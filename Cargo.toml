@@ -1,0 +1,23 @@
+[package]
+name = "csum"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-only"
+authors = ["Awiteb <https://github.com/TheAwiteb>"]
+readme = "README.md"
+description = "Simple Rust CLI to checksum"
+repository = "https://github.com/TheAwiteb/csum"
+rust-version = "1.63"
+keywords = ["checksum", "IO", "CLI"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+checksums = "= 0.9.1"
+clap = { version = "= 3.2.22", features = ["cargo"] }
+colored = "2.0.0"
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "s"
+lto = true
+codegen-units = 1
