@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-use std::path::Path;
+use std::{fs::File, path::Path};
 
 pub fn check_file_existing(path: &str) -> Result<String, String> {
     let file_path = Path::new(path);
@@ -23,6 +23,8 @@ pub fn check_file_existing(path: &str) -> Result<String, String> {
         Err(format!("'{path}' is not exists"))
     } else if !file_path.is_file() {
         Err(format!("'{path}' is not file"))
+    } else if File::open(file_path).is_err() {
+        Err(format!("Cannot read `{path}`"))
     } else {
         Ok(path.to_string())
     }
