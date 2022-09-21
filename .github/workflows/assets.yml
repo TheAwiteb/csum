@@ -28,5 +28,6 @@ jobs:
           EXTRA_FILES: "README.md LICENSE"
           MINIFY: true
         with:
+          TOOLCHAIN_VERSION: stable
           RUSTTARGET: ${{ matrix.target }}
           ARCHIVE_TYPES: ${{ matrix.archive }}
