@@ -26,6 +26,7 @@ fn main() {
     let args = cli::parser::parser();
     let verify_with = args.get_one::<String>("verify");
     let is_plaintext = args.get_flag("plaintext");
+    let in_uppercase = args.get_flag("upper");
     let file = args.get_one::<String>("FILE").expect("Is required");
     let algorithms: Vec<&str> = args
         .get_raw("algorithms")
@@ -37,6 +38,6 @@ fn main() {
     if let Some(check) = verify_with {
         utils::checksum(Path::new(file), algorithms, check)
     } else {
-        utils::print_hashs(Path::new(file), algorithms, is_plaintext)
+        utils::print_hashs(Path::new(file), algorithms, is_plaintext, in_uppercase)
     }
 }

@@ -19,7 +19,7 @@ use checksums::{hash_file, Algorithm};
 use colored::Colorize;
 use std::{path::Path, str::FromStr};
 
-pub fn print_hashs(file: &Path, algorithms: Vec<&str>, plaintext: bool) {
+pub fn print_hashs(file: &Path, algorithms: Vec<&str>, plaintext: bool, in_uppercase: bool) {
     let file_name = file
         .file_name()
         .expect("Cannot get file name from file")
@@ -35,7 +35,11 @@ pub fn print_hashs(file: &Path, algorithms: Vec<&str>, plaintext: bool) {
             file,
             Algorithm::from_str(algorithm).expect("Is has been validated"),
         );
-
+        let hash = if !in_uppercase {
+            hash.to_ascii_lowercase()
+        } else {
+            hash
+        };
         if plaintext {
             println!("# {algorithm}\n{hash}  {file_name}",)
         } else {
@@ -58,7 +62,7 @@ pub fn checksum(file: &Path, algorithms: Vec<&str>, check_hash: &str) {
             file,
             Algorithm::from_str(algorithm).expect("Is has been validated"),
         )
-        .eq(check_hash)
+        .eq_ignore_ascii_case(check_hash)
         {
             println!(
                 "{} Found match with `{}`",

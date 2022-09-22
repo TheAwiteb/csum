@@ -63,5 +63,10 @@ pub fn parser() -> ArgMatches {
                 .action(clap::ArgAction::SetTrue)
                 .conflicts_with("verify"),
         )
+        .arg(
+            arg!(-u --upper "Return a hash in uppercase")
+                .action(clap::ArgAction::SetTrue)
+                .conflicts_with("verify"),
+        )
         .get_matches()
 }
