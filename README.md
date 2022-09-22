@@ -67,6 +67,7 @@ OPTIONS:
                                         md5, md6-128, md6-256, md6-512, whirlpool, xor8]
     -h, --help                          Print help information
     -p, --plaintext                     Print a checksums without colors
+    -u, --upper                         Return a hash in uppercase
     -v, --verify <HASH>                 Verify if your hash match any hash
     -V, --version                       Print version information
 ```
